@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam style strictuml
+skinparam classBackgroundColor White
+skinparam backgroundColor White
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+interface "Iterable<Apolice>" as Iterable <<interface>> {
+  + iterator() : Iterator
+}
+
+class Carteira {
+  - apolices : List<Apolice>
+  + iterator() : Iterator<Apolice>
+}
+
+class Apolice {
+  - numero : String
+  - ativa : boolean
+  + isAtiva() : boolean
+}
+
+class Relatorio {
+  + contarApolicesAtivasCarteira(carteira : Carteira) : Integer
+  + contarTotalApolicesCarteira(carteira : Carteira) : Integer
+}
+
+Iterable <|.. Carteira
+Carteira --> "*" Apolice : apolices
+Relatorio ..> Carteira
+@enduml
